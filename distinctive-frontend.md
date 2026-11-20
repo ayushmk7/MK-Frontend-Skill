@@ -84,6 +84,7 @@ Choose one expression for a screen. Share the palette, spacing, BB8 behavior, an
 | Secondary action | Neutral surface or transparent fill with a visible border |
 | Link | Blue text in light mode; underlined neutral text in dark mode for readable contrast |
 | Card or panel | Opaque black in dark mode, white or near-white in light mode; expression-specific radius and consistent inner spacing |
+| Short stats or key facts | Center each label-and-value group horizontally and vertically; separate groups with space, without an enclosing rule or dividers |
 | Filter or tab | Capsule; selected state is visible through fill, text, and `aria-pressed` or `aria-selected` |
 | Form field | Visible label, useful placeholder, clear focus state, accessible error text |
 | Data table | Clear heading hierarchy, tabular numbers, row separators, internal horizontal scroll on mobile |
