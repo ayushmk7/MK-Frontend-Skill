@@ -18,7 +18,7 @@ This is the design reference for MK interfaces. The common identity is **black a
 - **Specific content before decoration.** A hero should show or describe what this product does. Remove generic claims, filler graphics, emoji labels, and visuals that compete with the product.
 - **Hierarchy through size and space.** Make headings, body copy, controls, and data easy to scan. Keep small text at normal or slightly open tracking; reserve tight tracking for large display type. Website's uppercase display type is a deliberate brand exception, not a pattern for small labels.
 - **Repeat decisions.** Components with the same job share dimensions, padding, border treatment, and interaction states. Vary size only when the content or hierarchy calls for it.
-- **Separate with space.** Do not add decorative rules between sections, metadata, activity items, or resource links. Use spacing and alignment to group content. Keep borders where they define a card or control, show keyboard focus, or make a data table easier to scan.
+- **Separate with space.** Do not add decorative rules between sections, metadata, activity items, resource links, or table rows. Use spacing and alignment to group content. Keep borders where they define a card or control or show keyboard focus. Add table rules only when dense data cannot be read clearly without them.
 - **Motion explains change.** Hover, press, menus, and panels should acknowledge an action or preserve orientation. Avoid looping decoration, bounce, parallax, and movement that makes repeated work tiring.
 
 ## Spacing and layout
@@ -92,7 +92,7 @@ Choose one expression for a screen. Share the palette, spacing, BB8 behavior, an
 | Filter or tab | Capsule; selected state is visible through fill, text, and `aria-pressed` or `aria-selected` |
 | Navigation and choice sets | Group destinations by task; show one current choice and one clear primary action. Use a labeled select or grouped view when a filter or library grows beyond a quick scan |
 | Form field | Visible label, useful placeholder, clear focus state, accessible error text |
-| Data table | Clear heading hierarchy, tabular numbers, row separators, internal horizontal scroll on mobile |
+| Data table | Clear heading hierarchy, aligned columns, tabular numbers, space between rows, and internal horizontal scroll on mobile; no default row rules |
 | Theme switch | Existing BB8 art with a focusable checkbox/button, correct effective state, reduced-motion support |
 
 For graphic and brutalist treatments, make action buttons curved pills with a 2px outline. Keep the blue primary fill and neutral secondary fill flat; use contrast, type, and borders for character instead of shadows or raised effects.
