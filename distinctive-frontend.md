@@ -17,6 +17,7 @@ This is the design reference for MK interfaces. The common identity is **black a
 - **Specific content before decoration.** A hero should show or describe what this product does. Remove generic claims, filler graphics, emoji labels, and visuals that compete with the product.
 - **Hierarchy through size and space.** Make headings, body copy, controls, and data easy to scan. Keep small text at normal or slightly open tracking; reserve tight tracking for large display type. Website's uppercase display type is a deliberate brand exception, not a pattern for small labels.
 - **Repeat decisions.** Components with the same job share dimensions, padding, border treatment, and interaction states. Vary size only when the content or hierarchy calls for it.
+- **Separate with space.** Do not add decorative rules between sections, metadata, activity items, or resource links. Use spacing and alignment to group content. Keep borders where they define a card or control, show keyboard focus, or make a data table easier to scan.
 - **Motion explains change.** Hover, press, menus, and panels should acknowledge an action or preserve orientation. Avoid looping decoration, bounce, parallax, and movement that makes repeated work tiring.
 
 ## Spacing and layout
@@ -94,7 +95,7 @@ Cyberpunk, brutalist, vaporwave, and Nordic are optional **style studies**. They
 
 ## Motion and usability
 
-[Ken's resources page](https://kenisbuilding.com/resources) collects five design tools and twenty motion/UX principles. Select the few principles that support a screen rather than animating every element. Apply these defaults:
+[Ken's resources page](https://kenisbuilding.com/resources) is a reference for motion choices. Select the few principles that support a screen rather than showing a full catalogue or a "browse all" accordion in the interface. Apply these defaults:
 
 - Press and hover feedback: **100–150ms**. Ordinary UI moves: **150–300ms**. Large panels: up to **400ms**. Closing should be faster than opening.
 - Stagger only the first few list items, by **30–60ms**, keeping the whole reveal under about **300ms**.
@@ -102,7 +103,7 @@ Cyberpunk, brutalist, vaporwave, and Nordic are optional **style studies**. They
 - Keep frequent actions calm. Give one primary action visual emphasis. Preserve 44px touch targets where possible.
 - Honor `prefers-reduced-motion`, reduced transparency, high contrast, keyboard focus, and system appearance changes.
 
-The full vocabulary on that page covers squash and stretch, anticipation, stagger, follow-through, easing, arcs, secondary action, timing, exaggerated feedback, depth, origin awareness, target size, rubber banding, choice count, distinctive emphasis, response time, interruptibility, fast closing, a clear ending, and frequency of use. Use a technique only where it clarifies feedback or orientation. Do not squash text or animate data just to show off.
+Use a motion technique only where it clarifies feedback or orientation. Do not squash text or animate data just to show off.
 
 ### Resource shelf
 
@@ -115,6 +116,7 @@ Inspect the rendered screen first, then write down its product, character, mater
 - [ ] The hero leads with a specific product message and no more than one primary and one secondary action.
 - [ ] Repeated elements share dimensions; spacing follows the 4px grid and related items sit closer together than separate groups.
 - [ ] Blue appears only where it carries action or state; dark boxes remain opaque black without grain, gradients, blur, or shadows.
+- [ ] Decorative divider lines are absent; borders serve a clear component, focus, or data-reading purpose.
 - [ ] There are no eyebrows, decorative preheadings, or filler visuals.
 - [ ] Light, dark, keyboard focus, BB8 state, reduced motion, reduced transparency, and high contrast have been checked.
 - [ ] Mobile has no page overflow; dense tables scroll within themselves; copy and data remain readable.
