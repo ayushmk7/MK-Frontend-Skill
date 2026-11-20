@@ -7,7 +7,7 @@ This is the design reference for MK interfaces. The identity is **black and whit
 - Use white or near-white pages in light mode and black or near-black pages in dark mode. Neutrals carry the layout; blue marks action, selection, links, and focus.
 - Use **royal blue `#2563EB` (blue-600) as the only UI blue**, in both appearances and on every page. Blue fills carry white text. Small links on black use neutral light text with a persistent underline because `#2563EB` does not reach normal-text contrast there.
 - Default to the system appearance. When the user chooses light or dark with BB8, save that explicit choice and apply it before the next paint. The toggle must show the effective mode, work with keyboard and assistive technology, and retain its visible focus ring. Use the original BB8 artwork and its cursor hover behavior. Its day/night illustration keeps its original sky and orange colors; those are artwork, not UI accents.
-- On landing pages and websites, the header and hero together fill at least the first visible viewport on every device; the next section starts below the fold. Keep the hero's message and action visible and let short screens scroll when content cannot fit. In dark mode, use flat, opaque black boxes with thin borders. Do not add gradients, grain, blur, box shadows, glow, or hover lift. Preserve the original BB8 illustration's shading.
+- On landing pages and websites, the header and hero together fill at least the first visible viewport on every device; the next section starts below the fold. Keep the hero's message and action visible and let short screens scroll when content cannot fit. In dark mode, use flat, opaque black cards with quiet borders. Do not add gradients, grain, blur, box shadows, glow, or hover lift. Preserve the original BB8 illustration's shading.
 - Do not use eyebrows, overlines, preheading labels, or decorative section numbers anywhere. Start sections with the actual heading. Keep labels only where they identify controls or data.
 - Give text, blue actions, muted text, and focus indicators readable contrast in both modes. Use semantic colors for success and errors, rather than assigning those meanings to brand blue.
 
@@ -38,19 +38,22 @@ Work on a **4px grid** for margins, padding, gaps, and fixed heights. Start with
 
 Use about 16px padding for compact panels and 20–24px for cards. Keep repeated rows the same height: about 32–36px for compact navigation and at least 44px for touch-first actions. Space within a group must be smaller than the gap to the next group. Align icons, label starts, and numeric columns instead of correcting them with stray offsets.
 
+Keep nested rectangular corners concentric: **inner radius = outer radius − padding**. A 32px card corner with 24px inset leaves an 8px inner corner. Apply the same calculation to fields, inset samples, and dialogs that sit against a parent's padded edge; never pair two arbitrary radii. Pills are independent controls and keep their full capsule shape.
+
 Keep portfolio content near 1200px wide. Let app content stay fluid, with a practical cap around 1440–1600px. On small screens, stack content in reading order and let dense tables scroll inside their own container.
 
 For landing pages and websites, size the hero to the visible viewport minus the header, using `100svh` where supported. Center its content within that space, then allow the section to grow if the text or controls need more room. Check both wide and narrow screens, including short landscape viewports; never clip the message or action to force a one-screen fit.
 
 ## Base web tokens
 
-Use these values across MK web pages. Cards are white in light mode and black in dark mode; gray belongs to text and borders, not filled boxes.
+Use these values across MK web pages. Cards are white in light mode and black in dark mode. The navigation region uses a distinct near-black fill in dark mode to separate it from the canvas without a bright dividing line.
 
 ```css
 :root {
   color-scheme: light;
   --mk-bg: #fafafa;
   --mk-surface: #fff;
+  --mk-nav: #fff;
   --mk-fg: #0a0a0a;
   --mk-muted: #4a4a4a;
   --mk-line: #d0d0d0;
@@ -63,19 +66,20 @@ Use these values across MK web pages. Cards are white in light mode and black in
   color-scheme: dark;
   --mk-bg: #080808;
   --mk-surface: #000;
+  --mk-nav: #181818;
   --mk-fg: #f5f5f5;
   --mk-muted: #b7b7b7;
-  --mk-line: #3a3a3a;
-  --mk-outline: #888;
+  --mk-line: #292929;
+  --mk-outline: #626262;
   --mk-link: #f5f5f5;
 }
 ```
 
-Use opaque fills and a quiet border to define each box. Never use gray filled cards, gradients, blur, or shadows.
+Use opaque fills and quiet borders where a boundary is needed. In dark mode, distinguish the sidebar (`#181818`) from the page (`#080808`) by surface tone; keep cards black (`#000000`). Use `#292929` for optional card edges, and `#626262` for control outlines that need a clear boundary and meet 3:1 contrast against black. Avoid white panel borders and decorative dividing lines. Never use gray filled cards, gradients, blur, or shadows.
 
 ## One system across page types
 
-Use Allo Variable Friendly with a system sans fallback, the same palette, 20px card corners, curved outlined actions, and BB8 on every page. Adapt content order and density to the task: a landing page opens with its full-viewport hero; a dashboard leads with useful metrics and data; a workspace gives its editor room; a component library groups related examples. These are page types, not separate visual themes.
+Use Allo Variable Friendly with a system sans fallback, the same palette, 32px card corners with 24px padding and 8px inset corners, curved outlined actions, and BB8 on every page. Adapt content order and density to the task: a landing page opens with its full-viewport hero; a dashboard leads with useful metrics and data; a workspace gives its editor room; a component library groups related examples. These are page types, not separate visual themes.
 
 ## Allo reading stack
 
@@ -96,7 +100,7 @@ Allo's heavy weights and tightly packed shapes make extra negative tracking hard
 | Primary action | One prominent blue fill with white text; immediate press feedback |
 | Secondary action | Neutral surface or transparent fill with a visible border |
 | Link | Blue text in light mode; underlined neutral text in dark mode for readable contrast |
-| Card or panel | Opaque black in dark mode and white in light mode; 20px radius and consistent inner spacing; never a gray fill |
+| Card or panel | Opaque black in dark mode and white in light mode; 32px radius, 24px padding, and 8px inset corners; never a gray fill |
 | Short stats or key facts | Center each label-and-value group horizontally and vertically; separate groups with space, without an enclosing rule or dividers |
 | Filter or tab | Capsule; selected state is visible through fill, text, and `aria-pressed` or `aria-selected` |
 | Navigation and choice sets | Group destinations by task; show the current choice and one clear primary action. Use visible buttons for short filters, and named views plus search for longer sets |
@@ -127,7 +131,8 @@ Inspect the rendered screen first, then write down its product, character, mater
 - [ ] Repeated elements share dimensions; spacing follows the 4px grid and related items sit closer together than separate groups.
 - [ ] Each step exposes a small, relevant choice set; larger libraries and filters are grouped with clear labels, essential actions stay visible, and there are no dropdowns.
 - [ ] Blue appears only where it carries action or state; dark boxes remain opaque black without grain, gradients, blur, or shadows.
-- [ ] Decorative divider lines are absent; borders serve a clear component, focus, or data-reading purpose.
+- [ ] Dark navigation is separated by surface tone, not a bright rule; decorative divider lines are absent, and borders serve a clear component, focus, or data-reading purpose.
+- [ ] Nested rectangular corners follow outer radius minus padding; pill controls remain capsules.
 - [ ] There are no eyebrows, decorative preheadings, or filler visuals.
 - [ ] Light, dark, keyboard focus, BB8 state, reduced motion, reduced transparency, and high contrast have been checked.
 - [ ] Mobile has no page overflow; dense tables scroll within themselves; copy and data remain readable.
