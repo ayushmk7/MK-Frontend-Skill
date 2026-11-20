@@ -1,12 +1,12 @@
 # MK frontend design language
 
-This is the design reference for MK interfaces. The common identity is **black and white, one royal blue accent, and the BB8 light/dark switch**. The same identity can be loud on a portfolio and quiet in a tool. Keep an existing product's visual treatment when extending it.
+This is the design reference for MK interfaces. The identity is **black and white, one royal blue accent, Allo type, and the BB8 light/dark switch**. Use the same visual language on landing pages, dashboards, workspaces, and component libraries.
 
 ## Core identity
 
 - Use white or near-white pages in light mode and black or near-black pages in dark mode. Neutrals carry the layout; blue marks action, selection, links, and focus.
-- Use **royal blue `#2563EB` (blue-600) as the only UI blue**, in both appearances and every expression. Blue fills carry white text. Small links on black use neutral light text with a persistent underline because `#2563EB` does not reach normal-text contrast there.
-- Default to the system appearance. When the user chooses light or dark with BB8, save that explicit choice and apply it before the next paint. The toggle must show the effective theme, work with keyboard and assistive technology, and retain its visible focus ring. Use the original Website BB8 artwork and its cursor hover behavior. Its day/night illustration keeps its original sky and orange colors; those are artwork, not UI accents.
+- Use **royal blue `#2563EB` (blue-600) as the only UI blue**, in both appearances and on every page. Blue fills carry white text. Small links on black use neutral light text with a persistent underline because `#2563EB` does not reach normal-text contrast there.
+- Default to the system appearance. When the user chooses light or dark with BB8, save that explicit choice and apply it before the next paint. The toggle must show the effective mode, work with keyboard and assistive technology, and retain its visible focus ring. Use the original BB8 artwork and its cursor hover behavior. Its day/night illustration keeps its original sky and orange colors; those are artwork, not UI accents.
 - On landing pages and websites, the header and hero together fill at least the first visible viewport on every device; the next section starts below the fold. Keep the hero's message and action visible and let short screens scroll when content cannot fit. In dark mode, use flat, opaque black boxes with thin borders. Do not add gradients, grain, blur, box shadows, glow, or hover lift. Preserve the original BB8 illustration's shading.
 - Do not use eyebrows, overlines, preheading labels, or decorative section numbers anywhere. Start sections with the actual heading. Keep labels only where they identify controls or data.
 - Give text, blue actions, muted text, and focus indicators readable contrast in both modes. Use semantic colors for success and errors, rather than assigning those meanings to brand blue.
@@ -16,7 +16,8 @@ This is the design reference for MK interfaces. The common identity is **black a
 - **One clear focal point.** Let the actual work, a product preview, or a useful result carry the screen. Use blue for the main action or selection; keep navigation and supporting controls quiet.
 - **Keep each decision focused (Hick’s law).** Choice takes longer as the visible set grows. Show the options needed for the current task, group larger sets under clear names, and reveal secondary choices when needed. Keep essential actions easy to find; do not hide them in an unlabeled “more” menu.
 - **Specific content before decoration.** A hero should show or describe what this product does. Remove generic claims, filler graphics, emoji labels, and visuals that compete with the product.
-- **Hierarchy through size and space.** Make headings, body copy, controls, and data easy to scan. Keep small text at normal or slightly open tracking; reserve tight tracking for large display type. Website's uppercase display type is a deliberate brand exception, not a pattern for small labels.
+- **Hierarchy through size and space.** Make headings, body copy, controls, and data easy to scan. Keep small text at normal or slightly open tracking; reserve tight tracking for large display type. Use uppercase sparingly for headings, never as a decorative preheading.
+- **No dropdowns.** Select menus hide choices and add a step. Show small sets as labeled buttons; split larger sets into named views and offer search when needed. Keep the current choice visible.
 - **Repeat decisions.** Components with the same job share dimensions, padding, border treatment, and interaction states. Vary size only when the content or hierarchy calls for it.
 - **Separate with space.** Do not add decorative rules between sections, metadata, activity items, resource links, or table rows. Use spacing and alignment to group content. Keep borders where they define a card or control or show keyboard focus. Add table rules only when dense data cannot be read clearly without them.
 - **Motion explains change.** Hover, press, menus, and panels should acknowledge an action or preserve orientation. Avoid looping decoration, bounce, parallax, and movement that makes repeated work tiring.
@@ -43,42 +44,50 @@ For landing pages and websites, size the hero to the visible viewport minus the 
 
 ## Base web tokens
 
-These are the starting values for **new MK web work**. When extending an existing product, retain its component conventions while normalizing its blue UI accents to `#2563EB`.
+Use these values across MK web pages. Cards are white in light mode and black in dark mode; gray belongs to text and borders, not filled boxes.
 
 ```css
 :root {
   color-scheme: light;
-  --mk-bg: #fff;
-  --mk-surface: #f5f5f5;
+  --mk-bg: #fafafa;
+  --mk-surface: #fff;
   --mk-fg: #0a0a0a;
   --mk-muted: #4a4a4a;
-  --mk-line: rgb(0 0 0 / 10%);
+  --mk-line: #d0d0d0;
+  --mk-outline: #0a0a0a;
   --mk-accent: #2563eb;
   --mk-link: #2563eb;
   --mk-on-accent: #fff;
 }
-html.dark {
+:root[data-mode="dark"] {
   color-scheme: dark;
-  --mk-bg: #000;
+  --mk-bg: #080808;
   --mk-surface: #000;
   --mk-fg: #f5f5f5;
-  --mk-muted: #aaaaaa;
-  --mk-line: rgb(255 255 255 / 14%);
+  --mk-muted: #b7b7b7;
+  --mk-line: #3a3a3a;
+  --mk-outline: #888;
   --mk-link: #f5f5f5;
 }
 ```
 
-Use an opaque fill and a hairline to define each box. Keep the chosen expression's neutral colors and component conventions when extending an existing interface.
+Use opaque fills and a quiet border to define each box. Never use gray filled cards, gradients, blur, or shadows.
 
-## Three MK expressions
+## One system across page types
 
-| Expression | Type | Surfaces and controls | Use for |
-| --- | --- | --- | --- |
-| **Website / graphic** | Archivo Black uppercase display, DM Sans body, Space Grotesk controls, JetBrains Mono small labels | Strong outlines, rounded section sheets, flat panels, pill actions | Portfolios, launches, editorial showcases |
-| **Internship / utility** | System sans, compact semibold hierarchy | Flat black/white canvas, hairline borders, blue active pills | Search, filters, tables, dashboards |
-| **Virgule / native** | Platform system sans and monospace for code | Dynamic system colors, quiet panels, hairline dividers, capsule actions, compact density | Desktop tools and document workspaces |
+Use Allo Variable Friendly with a system sans fallback, the same palette, 20px card corners, curved outlined actions, and BB8 on every page. Adapt content order and density to the task: a landing page opens with its full-viewport hero; a dashboard leads with useful metrics and data; a workspace gives its editor room; a component library groups related examples. These are page types, not separate visual themes.
 
-Choose one expression for a screen. Share the palette, spacing, BB8 behavior, and interaction rules across them. Keep each screen's type, outlines, and panel density consistent.
+## Allo reading stack
+
+| Role | Weight | Size | Line height | Tracking |
+| --- | --- | --- | --- | --- |
+| Hero display | 800 | `clamp(3.1rem, 7vw, 7.5rem)`; scale to about 32–40px on phones | 1.06 | 0 |
+| Page title | 800 | `clamp(2.6rem, 5vw, 4.2rem)` | 1.07 | `-0.015em` |
+| Section or card title | 800 | 20–28px | 1.2–1.25 | 0 |
+| Body copy | 400 | 16–19px | 1.55–1.65 | 0 |
+| Action or control | 700 | 13–14px | At least 1.3 | 0 |
+
+Allo's heavy weights and tightly packed shapes make extra negative tracking hard to read. Keep the hero at weight 800 with neutral tracking and room between lines. Limit body copy to a comfortable line length, and let headings wrap before reducing type below a readable size. Use `font-synthesis: none` so fallback styling does not invent heavier glyphs.
 
 ## Component grammar
 
@@ -87,17 +96,16 @@ Choose one expression for a screen. Share the palette, spacing, BB8 behavior, an
 | Primary action | One prominent blue fill with white text; immediate press feedback |
 | Secondary action | Neutral surface or transparent fill with a visible border |
 | Link | Blue text in light mode; underlined neutral text in dark mode for readable contrast |
-| Card or panel | Opaque black in dark mode, white or near-white in light mode; expression-specific radius and consistent inner spacing |
+| Card or panel | Opaque black in dark mode and white in light mode; 20px radius and consistent inner spacing; never a gray fill |
 | Short stats or key facts | Center each label-and-value group horizontally and vertically; separate groups with space, without an enclosing rule or dividers |
 | Filter or tab | Capsule; selected state is visible through fill, text, and `aria-pressed` or `aria-selected` |
-| Navigation and choice sets | Group destinations by task; show one current choice and one clear primary action. Use a labeled select or grouped view when a filter or library grows beyond a quick scan |
+| Navigation and choice sets | Group destinations by task; show the current choice and one clear primary action. Use visible buttons for short filters, and named views plus search for longer sets |
+| Dropdown | Do not use dropdowns or select menus for navigation, filters, appearance, or actions; keep choices visible in buttons or named views |
 | Form field | Visible label, useful placeholder, clear focus state, accessible error text |
 | Data table | Clear heading hierarchy, aligned columns, tabular numbers, space between rows, and internal horizontal scroll on mobile; no default row rules |
 | Theme switch | Existing BB8 art with a focusable checkbox/button, correct effective state, reduced-motion support |
 
-For graphic and brutalist treatments, make action buttons curved pills with a 2px outline. Keep the blue primary fill and neutral secondary fill flat; use contrast, type, and borders for character instead of shadows or raised effects.
-
-Cyberpunk, brutalist, vaporwave, and Nordic are optional **style studies**. They explore type, borders, shape, and surface treatment while using the same black/white/gray neutrals and `#2563EB`. Their panels and controls stay flat. They are separate from the three MK expressions, not extra brand palettes.
+Make every action button a curved brutalist pill with a 2px outline. Keep the blue primary fill and neutral secondary fill flat; use contrast, type, and borders for character instead of shadows or raised effects.
 
 ## Motion and usability
 
@@ -111,22 +119,18 @@ Cyberpunk, brutalist, vaporwave, and Nordic are optional **style studies**. They
 
 Use a motion technique only where it clarifies feedback or orientation. Do not squash text or animate data just to show off.
 
-### Resource shelf
-
-The page also links to [Impeccable](https://github.com/pbakaus/impeccable), [awesome-design-md](https://github.com/VoltAgent/awesome-design-md) and [getdesign.md](https://getdesign.md), [Vercel's web design guidelines](https://github.com/vercel-labs/agent-skills), [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp), and [img2threejs](https://github.com/img2threejs/img2threejs). Treat them as optional references and checks. This repo does not install them; the design language above is the source of truth.
-
 ## Before shipping an MK screen
 
 Inspect the rendered screen first, then write down its product, character, material, main moment, and one signature detail. Fix spacing across the whole screen before tuning color, icons, copy, type, layout, details, visuals, and motion. Preserve existing features and content unless the task calls for a change.
 
 - [ ] On landing pages and websites, the header and hero fill the first visible viewport at desktop and mobile sizes; the hero has a specific product message and no more than one primary and one secondary action.
 - [ ] Repeated elements share dimensions; spacing follows the 4px grid and related items sit closer together than separate groups.
-- [ ] Each step exposes a small, relevant choice set; larger libraries and filters are grouped with clear labels, and essential actions stay visible.
+- [ ] Each step exposes a small, relevant choice set; larger libraries and filters are grouped with clear labels, essential actions stay visible, and there are no dropdowns.
 - [ ] Blue appears only where it carries action or state; dark boxes remain opaque black without grain, gradients, blur, or shadows.
 - [ ] Decorative divider lines are absent; borders serve a clear component, focus, or data-reading purpose.
 - [ ] There are no eyebrows, decorative preheadings, or filler visuals.
 - [ ] Light, dark, keyboard focus, BB8 state, reduced motion, reduced transparency, and high contrast have been checked.
 - [ ] Mobile has no page overflow; dense tables scroll within themselves; copy and data remain readable.
 
-Compare the screen before and after the pass at desktop and mobile sizes. **Spacing and review structure adapted from [Unslop](https://github.com/heydamir/unslop) by Damir Sokolovsky, licensed [CC BY 4.0](https://github.com/heydamir/unslop/blob/main/LICENSE).** MK's palette, BB8, expressions, and no-eyebrow rule remain this project's own direction.
+Compare the screen before and after the pass at desktop and mobile sizes. **Spacing and review structure adapted from [Unslop](https://github.com/heydamir/unslop) by Damir Sokolovsky, licensed [CC BY 4.0](https://github.com/heydamir/unslop/blob/main/LICENSE).** MK's palette, BB8, unified page language, and no-eyebrow rule remain this project's own direction.
 
