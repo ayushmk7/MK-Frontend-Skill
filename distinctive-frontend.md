@@ -14,6 +14,7 @@ This is the design reference for MK interfaces. The common identity is **black a
 ## Design principles
 
 - **One clear focal point.** Let the actual work, a product preview, or a useful result carry the screen. Use blue for the main action or selection; keep navigation and supporting controls quiet.
+- **Keep each decision focused (Hick’s law).** Choice takes longer as the visible set grows. Show the options needed for the current task, group larger sets under clear names, and reveal secondary choices when needed. Keep essential actions easy to find; do not hide them in an unlabeled “more” menu.
 - **Specific content before decoration.** A hero should show or describe what this product does. Remove generic claims, filler graphics, emoji labels, and visuals that compete with the product.
 - **Hierarchy through size and space.** Make headings, body copy, controls, and data easy to scan. Keep small text at normal or slightly open tracking; reserve tight tracking for large display type. Website's uppercase display type is a deliberate brand exception, not a pattern for small labels.
 - **Repeat decisions.** Components with the same job share dimensions, padding, border treatment, and interaction states. Vary size only when the content or hierarchy calls for it.
@@ -89,9 +90,12 @@ Choose one expression for a screen. Share the palette, spacing, BB8 behavior, an
 | Card or panel | Opaque black in dark mode, white or near-white in light mode; expression-specific radius and consistent inner spacing |
 | Short stats or key facts | Center each label-and-value group horizontally and vertically; separate groups with space, without an enclosing rule or dividers |
 | Filter or tab | Capsule; selected state is visible through fill, text, and `aria-pressed` or `aria-selected` |
+| Navigation and choice sets | Group destinations by task; show one current choice and one clear primary action. Use a labeled select or grouped view when a filter or library grows beyond a quick scan |
 | Form field | Visible label, useful placeholder, clear focus state, accessible error text |
 | Data table | Clear heading hierarchy, tabular numbers, row separators, internal horizontal scroll on mobile |
 | Theme switch | Existing BB8 art with a focusable checkbox/button, correct effective state, reduced-motion support |
+
+For graphic and brutalist treatments, make action buttons curved pills with a 2px outline. Keep the blue primary fill and neutral secondary fill flat; use contrast, type, and borders for character instead of shadows or raised effects.
 
 Cyberpunk, brutalist, vaporwave, and Nordic are optional **style studies**. They explore type, borders, shape, and surface treatment while using the same black/white/gray neutrals and `#2563EB`. Their panels and controls stay flat. They are separate from the three MK expressions, not extra brand palettes.
 
@@ -117,6 +121,7 @@ Inspect the rendered screen first, then write down its product, character, mater
 
 - [ ] On landing pages and websites, the header and hero fill the first visible viewport at desktop and mobile sizes; the hero has a specific product message and no more than one primary and one secondary action.
 - [ ] Repeated elements share dimensions; spacing follows the 4px grid and related items sit closer together than separate groups.
+- [ ] Each step exposes a small, relevant choice set; larger libraries and filters are grouped with clear labels, and essential actions stay visible.
 - [ ] Blue appears only where it carries action or state; dark boxes remain opaque black without grain, gradients, blur, or shadows.
 - [ ] Decorative divider lines are absent; borders serve a clear component, focus, or data-reading purpose.
 - [ ] There are no eyebrows, decorative preheadings, or filler visuals.
