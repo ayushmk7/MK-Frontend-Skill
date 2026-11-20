@@ -16,7 +16,7 @@ This is the design reference for MK interfaces. The identity is **black and whit
 - **One clear focal point.** Let the actual work, a product preview, or a useful result carry the screen. Use blue for the main action or selection; keep navigation and supporting controls quiet.
 - **Keep each decision focused (Hick’s law).** Choice takes longer as the visible set grows. Show the options needed for the current task, group larger sets under clear names, and reveal secondary choices when needed. Keep essential actions easy to find; do not hide them in an unlabeled “more” menu.
 - **Specific content before decoration.** A hero should show or describe what this product does. Remove generic claims, filler graphics, emoji labels, and visuals that compete with the product.
-- **Hierarchy through size and space.** Make headings, body copy, controls, and data easy to scan. Keep small text at normal or slightly open tracking; reserve tight tracking for large display type. Use uppercase sparingly for headings, never as a decorative preheading.
+- **Hierarchy through size and space.** Make headings, body copy, controls, and data easy to scan. Let short section headings use the available row and stay on one line when they fit; wrap only when the actual container is too narrow. Keep small text at normal or slightly open tracking; reserve tight tracking for large display type. Use uppercase sparingly for headings, never as a decorative preheading.
 - **No dropdowns.** Select menus hide choices and add a step. Show small sets as labeled buttons; split larger sets into named views and offer search when needed. Keep the current choice visible.
 - **Repeat decisions.** Components with the same job share dimensions, padding, border treatment, and interaction states. Vary size only when the content or hierarchy calls for it.
 - **Separate with space.** Do not add decorative rules between sections, metadata, activity items, resource links, or table rows. Use spacing and alignment to group content. Keep borders where they define a card or control or show keyboard focus. Add table rules only when dense data cannot be read clearly without them.
@@ -46,14 +46,13 @@ For landing pages and websites, size the hero to the visible viewport minus the 
 
 ## Base web tokens
 
-Use these values across MK web pages. Cards are white in light mode and black in dark mode. The navigation region uses a distinct near-black fill in dark mode to separate it from the canvas without a bright dividing line.
+Use these values across MK web pages. Cards are white in light mode and black in dark mode. Navigation shares the page background and uses one quiet structural border at its edge.
 
 ```css
 :root {
   color-scheme: light;
   --mk-bg: #fafafa;
   --mk-surface: #fff;
-  --mk-nav: #fff;
   --mk-fg: #0a0a0a;
   --mk-muted: #4a4a4a;
   --mk-line: #d0d0d0;
@@ -66,7 +65,6 @@ Use these values across MK web pages. Cards are white in light mode and black in
   color-scheme: dark;
   --mk-bg: #080808;
   --mk-surface: #000;
-  --mk-nav: #181818;
   --mk-fg: #f5f5f5;
   --mk-muted: #b7b7b7;
   --mk-line: #292929;
@@ -75,7 +73,7 @@ Use these values across MK web pages. Cards are white in light mode and black in
 }
 ```
 
-Use opaque fills and quiet borders where a boundary is needed. In dark mode, distinguish the sidebar (`#181818`) from the page (`#080808`) by surface tone; keep cards black (`#000000`). Use `#292929` for optional card edges, and `#626262` for control outlines that need a clear boundary and meet 3:1 contrast against black. Avoid white panel borders and decorative dividing lines. Never use gray filled cards, gradients, blur, or shadows.
+Use opaque fills and quiet borders where a boundary is needed. In dark mode, give the sidebar and page the same `#080808` fill, then put one `1px solid #292929` border on the sidebar's trailing edge. On mobile, use that border under the top bar. The line matches optional card edges, so it defines the navigation boundary without a bright rule. Keep cards black (`#000000`) and use `#626262` for control outlines that need a clear boundary and meet 3:1 contrast against black. Never use gray filled cards, gradients, blur, or shadows.
 
 ## One system across page types
 
@@ -131,7 +129,7 @@ Inspect the rendered screen first, then write down its product, character, mater
 - [ ] Repeated elements share dimensions; spacing follows the 4px grid and related items sit closer together than separate groups.
 - [ ] Each step exposes a small, relevant choice set; larger libraries and filters are grouped with clear labels, essential actions stay visible, and there are no dropdowns.
 - [ ] Blue appears only where it carries action or state; dark boxes remain opaque black without grain, gradients, blur, or shadows.
-- [ ] Dark navigation is separated by surface tone, not a bright rule; decorative divider lines are absent, and borders serve a clear component, focus, or data-reading purpose.
+- [ ] Navigation shares the page background and has only one quiet edge border; decorative divider lines are absent, and borders serve a clear component, focus, or data-reading purpose.
 - [ ] Nested rectangular corners follow outer radius minus padding; pill controls remain capsules.
 - [ ] There are no eyebrows, decorative preheadings, or filler visuals.
 - [ ] Light, dark, keyboard focus, BB8 state, reduced motion, reduced transparency, and high contrast have been checked.
