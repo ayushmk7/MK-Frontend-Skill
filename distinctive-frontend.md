@@ -7,7 +7,7 @@ This is the design reference for MK interfaces. The common identity is **black a
 - Use white or near-white pages in light mode and black or near-black pages in dark mode. Neutrals carry the layout; blue marks action, selection, links, and focus.
 - Use **royal blue `#2563EB` (blue-600) as the only UI blue**, in both appearances and every expression. Blue fills carry white text. Small links on black use neutral light text with a persistent underline because `#2563EB` does not reach normal-text contrast there.
 - Default to the system appearance. When the user chooses light or dark with BB8, save that explicit choice and apply it before the next paint. The toggle must show the effective theme, work with keyboard and assistive technology, and retain its visible focus ring. Use the original Website BB8 artwork and its cursor hover behavior. Its day/night illustration keeps its original sky and orange colors; those are artwork, not UI accents.
-- Lead with the hero before theme choices or supporting content. In dark mode, use flat, opaque black boxes with thin borders. Do not add gradients, grain, blur, box shadows, glow, or hover lift. Preserve the original BB8 illustration's shading.
+- On landing pages and websites, the header and hero together fill at least the first visible viewport on every device; the next section starts below the fold. Keep the hero's message and action visible and let short screens scroll when content cannot fit. In dark mode, use flat, opaque black boxes with thin borders. Do not add gradients, grain, blur, box shadows, glow, or hover lift. Preserve the original BB8 illustration's shading.
 - Do not use eyebrows, overlines, preheading labels, or decorative section numbers anywhere. Start sections with the actual heading. Keep labels only where they identify controls or data.
 - Give text, blue actions, muted text, and focus indicators readable contrast in both modes. Use semantic colors for success and errors, rather than assigning those meanings to brand blue.
 
@@ -37,6 +37,8 @@ Work on a **4px grid** for margins, padding, gaps, and fixed heights. Start with
 Use about 16px padding for compact panels and 20–24px for cards. Keep repeated rows the same height: about 32–36px for compact navigation and at least 44px for touch-first actions. Space within a group must be smaller than the gap to the next group. Align icons, label starts, and numeric columns instead of correcting them with stray offsets.
 
 Keep portfolio content near 1200px wide. Let app content stay fluid, with a practical cap around 1440–1600px. On small screens, stack content in reading order and let dense tables scroll inside their own container.
+
+For landing pages and websites, size the hero to the visible viewport minus the header, using `100svh` where supported. Center its content within that space, then allow the section to grow if the text or controls need more room. Check both wide and narrow screens, including short landscape viewports; never clip the message or action to force a one-screen fit.
 
 ## Base web tokens
 
@@ -113,7 +115,7 @@ The page also links to [Impeccable](https://github.com/pbakaus/impeccable), [awe
 
 Inspect the rendered screen first, then write down its product, character, material, main moment, and one signature detail. Fix spacing across the whole screen before tuning color, icons, copy, type, layout, details, visuals, and motion. Preserve existing features and content unless the task calls for a change.
 
-- [ ] The hero leads with a specific product message and no more than one primary and one secondary action.
+- [ ] On landing pages and websites, the header and hero fill the first visible viewport at desktop and mobile sizes; the hero has a specific product message and no more than one primary and one secondary action.
 - [ ] Repeated elements share dimensions; spacing follows the 4px grid and related items sit closer together than separate groups.
 - [ ] Blue appears only where it carries action or state; dark boxes remain opaque black without grain, gradients, blur, or shadows.
 - [ ] Decorative divider lines are absent; borders serve a clear component, focus, or data-reading purpose.
