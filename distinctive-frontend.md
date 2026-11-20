@@ -2,15 +2,40 @@
 
 This is the design reference for MK interfaces. The common identity is **black and white, one royal blue accent, and the BB8 light/dark switch**. The same identity can be loud on a portfolio and quiet in a tool. Keep an existing product's visual treatment when extending it.
 
-## The rules that stay the same
+## Core identity
 
 - Use white or near-white pages in light mode and black or near-black pages in dark mode. Neutrals carry the layout; blue marks action, selection, links, and focus.
 - Use **royal blue `#2563EB` (blue-600) as the only UI blue**, in both appearances and every expression. Blue fills carry white text. Small links on black use neutral light text with a persistent underline because `#2563EB` does not reach normal-text contrast there.
 - Default to the system appearance. When the user chooses light or dark with BB8, save that explicit choice and apply it before the next paint. The toggle must show the effective theme, work with keyboard and assistive technology, and retain its visible focus ring. Use the original Website BB8 artwork and its cursor hover behavior. Its day/night illustration keeps its original sky and orange colors; those are artwork, not UI accents.
-- Use the `4, 8, 12, 16, 24, 32px` spacing scale. Align content to a shared grid; keep web content roughly 1200px wide and let dense tables scroll within their own container on small screens.
 - Lead with the hero before theme choices or supporting content. In dark mode, use plain translucent black glass for boxes, with a thin border and blur; use solid black when reduced transparency or high contrast is requested. Do not add gradients, box shadows, glow, or hover lift. Preserve the original BB8 illustration's shading.
 - Do not use eyebrows, overlines, preheading labels, or decorative section numbers anywhere. Start sections with the actual heading. Keep labels only where they identify controls or data.
 - Give text, blue actions, muted text, and focus indicators readable contrast in both modes. Use semantic colors for success and errors, rather than assigning those meanings to brand blue.
+
+## Design principles
+
+- **One clear focal point.** Let the actual work, a product preview, or a useful result carry the screen. Use blue for the main action or selection; keep navigation and supporting controls quiet.
+- **Specific content before decoration.** A hero should show or describe what this product does. Remove generic claims, filler graphics, emoji labels, and visuals that compete with the product.
+- **Hierarchy through size and space.** Make headings, body copy, controls, and data easy to scan. Keep small text at normal or slightly open tracking; reserve tight tracking for large display type. Website's uppercase display type is a deliberate brand exception, not a pattern for small labels.
+- **Repeat decisions.** Components with the same job share dimensions, padding, border treatment, and interaction states. Vary size only when the content or hierarchy calls for it.
+- **Motion explains change.** Hover, press, menus, and panels should acknowledge an action or preserve orientation. Avoid looping decoration, bounce, parallax, and movement that makes repeated work tiring.
+
+## Spacing and layout
+
+Work on a **4px grid** for margins, padding, gaps, and fixed heights. Start with `4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128px`; other multiples of 4 are valid when the layout needs them. A 2px optical correction inside a small control is acceptable; one-off values elsewhere need a reason.
+
+| Relationship | Starting range | Application |
+| --- | --- | --- |
+| Inside a control | 4–12px | Keep icon-to-label gaps and control insets consistent |
+| Between related items | 4–8px | Rows, chips, and items in one group; dense navigation may use 2–4px |
+| Between groups | 12–24px | A card's text, actions, and adjacent card groups |
+| Between app sections | 32–64px | Separate tasks without making a tool feel sparse |
+| Between landing sections | 80–128px | Give the hero and major stories room to breathe |
+| Page edge | 24–32px desktop; 16–24px mobile | Align sections to one shared gutter |
+| Navigation to hero headline | 96–128px desktop; 48–64px mobile | Apply to stacked heroes; center a split hero against its visual |
+
+Use about 16px padding for compact panels and 20–24px for cards. Keep repeated rows the same height: about 32–36px for compact navigation and at least 44px for touch-first actions. Space within a group must be smaller than the gap to the next group. Align icons, label starts, and numeric columns instead of correcting them with stray offsets.
+
+Keep portfolio content near 1200px wide. Let app content stay fluid, with a practical cap around 1440–1600px. On small screens, stack content in reading order and let dense tables scroll inside their own container.
 
 ## Base web tokens
 
@@ -31,13 +56,18 @@ These are the starting values for **new MK web work**. When extending an existin
 html.dark {
   color-scheme: dark;
   --mk-bg: #000;
-  --mk-surface: #141414;
+  --mk-surface: rgb(0 0 0 / 84%);
   --mk-fg: #f5f5f5;
   --mk-muted: #aaaaaa;
   --mk-line: rgb(255 255 255 / 14%);
   --mk-link: #f5f5f5;
 }
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  html.dark { --mk-surface: #000; }
+}
 ```
+
+Use blur only where content actually sits behind a glass box. Keep the fill plain black, with no gradient; the hairline supplies the edge. Keep the chosen expression's neutral colors and component conventions when extending an existing interface.
 
 ## Three MK expressions
 
@@ -82,5 +112,14 @@ The page also links to [Impeccable](https://github.com/pbakaus/impeccable), [awe
 
 ## Before shipping an MK screen
 
-Check light and dark mode, the chosen blue's contrast, BB8 state and keyboard focus, mobile overflow, readable copy, and reduced-motion behavior. Compare the affected screens side by side for typography, spacing, controls, and surface treatment.
+Inspect the rendered screen first, then write down its product, character, material, main moment, and one signature detail. Fix spacing across the whole screen before tuning color, icons, copy, type, layout, details, visuals, and motion. Preserve existing features and content unless the task calls for a change.
+
+- [ ] The hero leads with a specific product message and no more than one primary and one secondary action.
+- [ ] Repeated elements share dimensions; spacing follows the 4px grid and related items sit closer together than separate groups.
+- [ ] Blue appears only where it carries action or state; dark boxes remain plain black glass without gradients or shadows.
+- [ ] There are no eyebrows, decorative preheadings, or filler visuals.
+- [ ] Light, dark, keyboard focus, BB8 state, reduced motion, reduced transparency, and high contrast have been checked.
+- [ ] Mobile has no page overflow; dense tables scroll within themselves; copy and data remain readable.
+
+Compare the screen before and after the pass at desktop and mobile sizes. **Spacing and review structure adapted from [Unslop](https://github.com/heydamir/unslop) by Damir Sokolovsky, licensed [CC BY 4.0](https://github.com/heydamir/unslop/blob/main/LICENSE).** MK's palette, BB8, expressions, and no-eyebrow rule remain this project's own direction.
 
