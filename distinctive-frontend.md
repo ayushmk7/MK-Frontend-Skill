@@ -7,7 +7,7 @@ This is the design reference for MK interfaces. The common identity is **black a
 - Use white or near-white pages in light mode and black or near-black pages in dark mode. Neutrals carry the layout; blue marks action, selection, links, and focus.
 - Use **royal blue `#2563EB` (blue-600) as the only UI blue**, in both appearances and every expression. Blue fills carry white text. Small links on black use neutral light text with a persistent underline because `#2563EB` does not reach normal-text contrast there.
 - Default to the system appearance. When the user chooses light or dark with BB8, save that explicit choice and apply it before the next paint. The toggle must show the effective theme, work with keyboard and assistive technology, and retain its visible focus ring. Use the original Website BB8 artwork and its cursor hover behavior. Its day/night illustration keeps its original sky and orange colors; those are artwork, not UI accents.
-- Lead with the hero before theme choices or supporting content. In dark mode, use plain translucent black glass for boxes, with a thin border and blur; use solid black when reduced transparency or high contrast is requested. Do not add gradients, box shadows, glow, or hover lift. Preserve the original BB8 illustration's shading.
+- Lead with the hero before theme choices or supporting content. In dark mode, use flat, opaque black boxes with thin borders. Do not add gradients, grain, blur, box shadows, glow, or hover lift. Preserve the original BB8 illustration's shading.
 - Do not use eyebrows, overlines, preheading labels, or decorative section numbers anywhere. Start sections with the actual heading. Keep labels only where they identify controls or data.
 - Give text, blue actions, muted text, and focus indicators readable contrast in both modes. Use semantic colors for success and errors, rather than assigning those meanings to brand blue.
 
@@ -56,18 +56,15 @@ These are the starting values for **new MK web work**. When extending an existin
 html.dark {
   color-scheme: dark;
   --mk-bg: #000;
-  --mk-surface: rgb(0 0 0 / 84%);
+  --mk-surface: #000;
   --mk-fg: #f5f5f5;
   --mk-muted: #aaaaaa;
   --mk-line: rgb(255 255 255 / 14%);
   --mk-link: #f5f5f5;
 }
-@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
-  html.dark { --mk-surface: #000; }
-}
 ```
 
-Use blur only where content actually sits behind a glass box. Keep the fill plain black, with no gradient; the hairline supplies the edge. Keep the chosen expression's neutral colors and component conventions when extending an existing interface.
+Use an opaque fill and a hairline to define each box. Keep the chosen expression's neutral colors and component conventions when extending an existing interface.
 
 ## Three MK expressions
 
@@ -86,7 +83,7 @@ Choose one expression for a screen. Share the palette, spacing, BB8 behavior, an
 | Primary action | One prominent blue fill with white text; immediate press feedback |
 | Secondary action | Neutral surface or transparent fill with a visible border |
 | Link | Blue text in light mode; underlined neutral text in dark mode for readable contrast |
-| Card or panel | Translucent black glass in dark mode, white or near-white in light mode; expression-specific radius and consistent inner spacing |
+| Card or panel | Opaque black in dark mode, white or near-white in light mode; expression-specific radius and consistent inner spacing |
 | Filter or tab | Capsule; selected state is visible through fill, text, and `aria-pressed` or `aria-selected` |
 | Form field | Visible label, useful placeholder, clear focus state, accessible error text |
 | Data table | Clear heading hierarchy, tabular numbers, row separators, internal horizontal scroll on mobile |
@@ -116,7 +113,7 @@ Inspect the rendered screen first, then write down its product, character, mater
 
 - [ ] The hero leads with a specific product message and no more than one primary and one secondary action.
 - [ ] Repeated elements share dimensions; spacing follows the 4px grid and related items sit closer together than separate groups.
-- [ ] Blue appears only where it carries action or state; dark boxes remain plain black glass without gradients or shadows.
+- [ ] Blue appears only where it carries action or state; dark boxes remain opaque black without grain, gradients, blur, or shadows.
 - [ ] There are no eyebrows, decorative preheadings, or filler visuals.
 - [ ] Light, dark, keyboard focus, BB8 state, reduced motion, reduced transparency, and high contrast have been checked.
 - [ ] Mobile has no page overflow; dense tables scroll within themselves; copy and data remain readable.
