@@ -38,7 +38,7 @@ Work on a **4px grid** for margins, padding, gaps, and fixed heights. Start with
 
 Use about 16px padding for compact panels and 20–24px for cards. Keep repeated rows the same height: about 32–36px for compact navigation and at least 44px for touch-first actions. Space within a group must be smaller than the gap to the next group. Align icons, label starts, and numeric columns instead of correcting them with stray offsets.
 
-Keep nested rectangular corners concentric: **inner radius = outer radius − padding**. A 32px card corner with 24px inset leaves an 8px inner corner. Apply the same calculation to fields, inset samples, and dialogs that sit against a parent's padded edge; never pair two arbitrary radii. Pills are independent controls and keep their full capsule shape.
+Keep nested rectangular corners concentric: **inner radius = outer radius − the gap between surfaces**. A 32px outer corner with an 8px gap leaves a 24px inner corner. This 8px surface gap is separate from the 20–24px padding used to position content inside a card. Apply the radius calculation to nested surfaces that share an edge; never pair two arbitrary radii. Pills are independent controls and keep their full capsule shape.
 
 Keep portfolio content near 1200px wide. Let app content stay fluid, with a practical cap around 1440–1600px. On small screens, stack content in reading order and let dense tables scroll inside their own container.
 
@@ -77,7 +77,7 @@ Use opaque fills and quiet borders where a boundary is needed. In dark mode, giv
 
 ## One system across page types
 
-Use Allo Variable Friendly with a system sans fallback, the same palette, 32px card corners with 24px padding and 8px inset corners, curved outlined actions, and BB8 on every page. Adapt content order and density to the task: a landing page opens with its full-viewport hero; a dashboard leads with useful metrics and data; a workspace gives its editor room; a component library groups related examples. These are page types, not separate visual themes.
+Use Allo Variable Friendly with a system sans fallback, the same palette, 32px card corners, 24px content padding, 24px corners on surfaces inset by 8px, curved outlined actions, and BB8 on every page. Adapt content order and density to the task: a landing page opens with its full-viewport hero; a dashboard leads with useful metrics and data; a workspace gives its editor room; a component library groups related examples. These are page types, not separate visual themes.
 
 ## Allo reading stack
 
@@ -98,7 +98,7 @@ Allo's heavy weights and tightly packed shapes make extra negative tracking hard
 | Primary action | One prominent blue fill with white text; immediate press feedback |
 | Secondary action | Neutral surface or transparent fill with a visible border |
 | Link | Blue text in light mode; underlined neutral text in dark mode for readable contrast |
-| Card or panel | Opaque black in dark mode and white in light mode; 32px radius, 24px padding, and 8px inset corners; never a gray fill |
+| Card or panel | Opaque black in dark mode and white in light mode; 32px outer radius and 24px content padding. A surface nested 8px inside it has a 24px radius; never a gray fill |
 | Short stats or key facts | Center each label-and-value group horizontally and vertically; separate groups with space, without an enclosing rule or dividers |
 | Filter or tab | Capsule; selected state is visible through fill, text, and `aria-pressed` or `aria-selected` |
 | Navigation and choice sets | Group destinations by task; show the current choice and one clear primary action. Use visible buttons for short filters, and named views plus search for longer sets |
